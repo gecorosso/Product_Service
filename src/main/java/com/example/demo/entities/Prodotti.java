@@ -22,12 +22,12 @@ import lombok.Setter;
 @Table(name="prodotti")
 public class Prodotti {
 	@Id
-	@Column(name="ID_PRODOTTI")
+	@Column(name="ID")
 	@NotEmpty
 	@NotNull
 	@NotBlank
 	@Getter @Setter 
-	private Integer id_prodotti;
+	private Integer id;
 	
 	@Column(name="DESCRIZIONE")
 	@NotEmpty
