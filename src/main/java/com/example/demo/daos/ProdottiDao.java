@@ -10,10 +10,6 @@ public interface ProdottiDao extends JpaRepository<Prodotti, Integer> {
 	//custom 
 	Optional<Prodotti> findById(Integer id);
 	
-	Optional<Prodotti> findByDescrizione(String descrizione);
-	Optional<Prodotti> findByCategoria(String categoria);
 	
-	void save(Optional<Prodotti> prodotto);
-	void deleteById(Integer id);
 	
 }

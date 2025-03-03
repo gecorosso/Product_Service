@@ -1,46 +1,26 @@
 package com.example.demo.entities;
 
-
-
-//JPA
-//JSR 303
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
 import lombok.*;
-import lombok.Setter;
 
 @Entity
 @AllArgsConstructor
-@NoArgsConstructor 
-@Table(name="prodotti")
+@NoArgsConstructor
+@Table(name = "prodotti")
+@Getter @Setter
 public class Prodotti {
-	@Id
-	@Column(name="ID")
-	@NotEmpty
-	@NotNull
-	@NotBlank
-	@Getter @Setter 
-	private Integer id;
-	
-	@Column(name="DESCRIZIONE")
-	@NotEmpty
-	@NotNull
-	@NotBlank
-	@Getter @Setter 
-	private String descrizione;
-	
-	@Column(name="CATEGORIA")
-	@NotEmpty
-	@NotNull
-	@NotBlank
-	@Getter @Setter 
-	private String categoria;
-	
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremento
+    @Column(name = "ID")
+    private Long id;
+
+    @Column(name = "DESCRIZIONE", nullable = false)
+    @NotBlank
+    private String descrizione;
+
+    @Column(name = "CATEGORIA", nullable = false)
+    @NotBlank
+    private String categoria;
 }
