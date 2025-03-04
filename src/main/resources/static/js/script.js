@@ -57,6 +57,11 @@ const app = Vue.createApp({
 			});
 		},
 
+		// Mostra il modale
+		openModal() {
+			this.showModal = true;  // Imposta il modale come visibile
+		},
+
 		// Chiude il modale
 		closeModal() {
 			this.showModal = false;  // Nasconde il modale
