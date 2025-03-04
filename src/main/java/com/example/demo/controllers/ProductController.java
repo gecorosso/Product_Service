@@ -21,6 +21,16 @@ public class ProductController {
 		@Autowired
 		private ProdottiServices prodottiServices;
 		
+		@GetMapping(value = "/message")
+		public String getMessage() {
+			return "Hello from the server! Spring Boot";
+		}
+		
+		@GetMapping(value = "/getAll", produces = "application/json")
+		public ResponseEntity<Iterable<Prodotti>> getProdotti() {
+			Iterable<Prodotti> prodotti = prodottiServices.findAll();
+			return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}		
 		
 		@GetMapping(value = "getProdottiById/{id}", produces = "application/json") 
 		public ResponseEntity<Prodotti> getProdottiById(@PathVariable("id") Integer id) {

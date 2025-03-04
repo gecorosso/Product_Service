@@ -84,7 +84,6 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>8.0.1.Final</version> <!-- Usa l'ultima versione disponibile -->
 		</dependency>
-
 	</dependencies>
 
 	<build>

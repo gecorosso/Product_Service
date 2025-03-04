@@ -10,4 +10,5 @@ public interface ProdottiServices  {
 	
 	public Prodotti findById(int id);
 	public Prodotti saveProdotti(Prodotti prodotti);
+	public Iterable<Prodotti> findAll();
 }	

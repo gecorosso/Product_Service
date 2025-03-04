@@ -18,6 +18,11 @@ public class ProdottiServicesImpl implements ProdottiServices {
 	@Override
 	public Prodotti saveProdotti(Prodotti prodotti) {
 		return prodottiRepository.save(prodotti);
+	}
+
+	@Override
+	public Iterable<Prodotti> findAll() {
+		return prodottiRepository.findAll();
 	}	
 
 }
