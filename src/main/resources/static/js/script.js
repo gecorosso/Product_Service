@@ -7,7 +7,8 @@ const app = Vue.createApp({
 				descrizione: '',
 				categoria: ''
 			},
-			showModal: false  // Controlla la visibilità del modale
+			showModal: false,  // Controlla la visibilità del modale
+			submitLabel: 'Aggiungi'  // Etichetta del pulsante di invio
 		};
 	},
 	methods: {
@@ -21,6 +22,8 @@ const app = Vue.createApp({
 				.catch(error => {
 					console.error('Errore nella richiesta:', error);
 				});
+				
+				
 		},
 
 		// Carica tutti i prodotti dal backend
@@ -51,21 +54,45 @@ const app = Vue.createApp({
 				this.prodotti.push(data);  // Aggiungi il prodotto all'array
 				this.closeModal();  // Chiudi il modale
 				this.newProduct = { descrizione: '', categoria: '' };  // Reset dei campi
+			    this.fetchDb();  // Ricarica i prodotti 	
 			})
 			.catch(error => {
 				console.error('Errore nell\'aggiunta del prodotto:', error);
 			});
 		},
-
+		popolamentoForm(prodotto){
+			this.openModal();
+			//Importantissimo Passaggio!!! 
+			//ridefinisce il newProduct con il id del prodotto!!
+			//così da poterlo passare alla chiamata PUT (Modifica)
+			this.newProduct={
+				id: prodotto.id,
+				descrizione: prodotto.descrizione,
+				categoria: prodotto.categoria	
+			}
+			//popola i campi del form con i dati del prodotto						
+			this.newProduct.descrizione = prodotto.descrizione;	
+			this.newProduct.categoria = prodotto.categoria;
+			this.submitLabel = 'Modifica';  // Cambia l'etichetta del pulsante
+			
+		},
+		deleteProdotto(){
+			alert("deleteProdotto");
+		},
 		// Mostra il modale
 		openModal() {
 			this.showModal = true;  // Imposta il modale come visibile
+			this.submitLabel = 'Aggiungi';  // Cambia l'etichetta del pulsante
 		},
 
 		// Chiude il modale
 		closeModal() {
 			this.showModal = false;  // Nasconde il modale
 		}
+		
+		
+		
+		
 	}
 });
 

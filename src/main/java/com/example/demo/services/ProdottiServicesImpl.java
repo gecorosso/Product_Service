@@ -1,5 +1,8 @@
 package com.example.demo.services;
 
+import java.lang.StackWalker.Option;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,12 +20,15 @@ public class ProdottiServicesImpl implements ProdottiServices {
 	
 	@Override
 	public Prodotti saveProdotti(Prodotti prodotti) {
+		System.out.println("--------->"+prodotti.getId());
 		return prodottiRepository.save(prodotti);
 	}
-
+	
 	@Override
 	public Iterable<Prodotti> findAll() {
 		return prodottiRepository.findAll();
-	}	
+	}
+
+		
 
 }

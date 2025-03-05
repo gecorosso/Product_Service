@@ -20,21 +20,25 @@
 
 		<!-- Tabella Prodotti -->
 		<h2>Elenco Prodotti</h2>
-		<button @click="fetchDb">Carica Prodotti</button>
-		<table class="table table-striped mt-3" v-if="prodotti.length > 0">
-			<thead>
-				<tr>
-					<th>Descrizione</th>
-					<th>Categoria</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr v-for="prodotto in prodotti" :key="prodotto.id">
-					<td>{{ prodotto.descrizione }}</td>
-					<td>{{ prodotto.categoria }}</td>
-				</tr>
-			</tbody>
-		</table>
+		<button @click="fetchDb">Carica Prodotti</button>		
+			<table class="table table-striped mt-3" v-if="prodotti.length > 0" >
+				<thead>
+					<tr>
+						<th>Descrizione</th>
+						<th>Categoria</th>
+						<th>Operazione</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="prodotto in prodotti" :key="prodotto.id">
+						<td>{{ prodotto.descrizione }}</td>
+						<td>{{ prodotto.categoria }}</td>
+						<td><button type="button" class="btn btn-success" @click="popolamentoForm(prodotto)">Modifica</button>&nbsp;
+							<button type="button" class="btn btn-danger" @click="deleteProdotto(prodotto)">Cancella</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		<br>
 		<br>
 		<!-- Bottone per aprire il modale di inserimento -->
@@ -58,7 +62,9 @@
 								<label for="categoria" class="form-label">Categoria</label>
 								<input type="text" id="categoria" v-model="newProduct.categoria" class="form-control" required>
 							</div>
-							<button type="submit" class="btn btn-success">Aggiungi</button>
+							
+							<button type="submit" class="btn btn-success">{{submitLabel}}</button>
+						
 						</form>
 					</div>
 				</div>
