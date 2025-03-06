@@ -12,16 +12,18 @@
 <body>
 	<div id="applicazione" class="container">
 		<h1>Index.html</h1>
+		<img src="./images/bootstrap--v2.png" class="img-thumbnail" alt="bootstrap inside" style="width: 80px; height: 80px;">
+		<img src="./images/vue-logo.png" class="img-thumbnail" alt="vue.js inside" style="width: 80px; height: 80px;">
+		<img src="./images/spring.png" class="img-thumbnail" alt="SpringBoot inside" style="width: 200px; height: 80px;">		
+		<img src="./images/maria.png" class="img-thumbnail" alt="MariaDb inside" style="width: 80px; height: 80px;">
 		<hr>
-
-		<!-- Messaggio Vue.js -->
-		<h2>{{ message }}</h2>
-		<button @click="fetchMessage">Carica Messaggio</button>
-
 		<!-- Tabella Prodotti -->
 		<h2>Elenco Prodotti</h2>
-		<button @click="fetchDb">Carica Prodotti</button>		
-			<table class="table table-striped mt-3" v-if="prodotti.length > 0" >
+		
+		<button type="button" class="btn btn-primary" @click="toggleProdotti">Carica Prodotti</button>
+		
+		
+			<table class="table table-striped mt-3" v-if="prodotti.length > 0" table-responsive>
 				<thead>
 					<tr>
 						<th>Descrizione</th>
@@ -29,11 +31,12 @@
 						<th>Operazione</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody >
 					<tr v-for="prodotto in prodotti" :key="prodotto.id">
 						<td>{{ prodotto.descrizione }}</td>
 						<td>{{ prodotto.categoria }}</td>
-						<td><button type="button" class="btn btn-success" @click="popolamentoForm(prodotto)">Modifica</button>&nbsp;
+						<td>
+							<button type="button" class="btn btn-success" @click="popolamentoForm(prodotto)">Modifica</button>&nbsp;
 							<button type="button" class="btn btn-danger" @click="deleteProdotto(prodotto)">Cancella</button>
 						</td>
 					</tr>

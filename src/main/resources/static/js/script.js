@@ -1,37 +1,37 @@
 const app = Vue.createApp({
 	data() {
 		return {
-			message: 'Ciao da file innestato, funziona dentro la cartella .js!',
+			//Variabili
 			prodotti: [],  // Array per contenere i prodotti
 			newProduct: {  // Nuovo prodotto da aggiungere
 				descrizione: '',
 				categoria: ''
 			},
 			showModal: false,  // Controlla la visibilità del modale
-			submitLabel: 'Aggiungi'  // Etichetta del pulsante di invio
+			submitLabel: 'Aggiungi',  // Etichetta del pulsante di invio
+			prodottiVisibili: false  // Controlla la visibilità della lista prodotti
 		};
 	},
 	methods: {
-		// Carica il messaggio dal backend
-		fetchMessage() {
-			fetch('/prodotti/message')  
-				.then(response => response.text())  
-				.then(data => {
-					this.message = data;  
-				})
-				.catch(error => {
-					console.error('Errore nella richiesta:', error);
-				});
-				
-				
-		},
-
+		
+		toggleProdotti() {
+            if (this.prodottiVisibili) {
+                // Se i prodotti sono già visibili, li nasconde
+                this.prodotti = [];
+                this.prodottiVisibili = false;
+            } else {
+                // Altrimenti, carica i prodotti
+                this.fetchDb();
+            }
+        },
+		
 		// Carica tutti i prodotti dal backend
 		fetchDb() {
 			fetch('/prodotti/getAll')  
 				.then(response => response.json())  // Converte la risposta in JSON
 				.then(data => {
 					this.prodotti = data;  // Salva i prodotti
+					this.prodottiVisibili = true;  // Mostra la lista prodotti
 				})
 				.catch(error => {
 					console.error('Errore nella richiesta:', error);
@@ -76,17 +76,41 @@ const app = Vue.createApp({
 			this.submitLabel = 'Modifica';  // Cambia l'etichetta del pulsante
 			
 		},
-		deleteProdotto(){
-			alert("deleteProdotto");
+		deleteProdotto(prodotto) {
+		    if (!confirm("Sei sicuro di voler eliminare il prodotto: " + prodotto.descrizione + "?")) {
+		        return; // Annulla l'operazione se l'utente preme "Annulla"
+		    }
+		
+		    fetch('/prodotti/delete/' + prodotto.id, {
+		        method: 'DELETE'
+		    })
+		    .then(response => {
+		        if (response.ok) {
+		            alert("Prodotto eliminato con successo!");
+		            this.prodotti = this.prodotti.filter(p => p.id !== prodotto.id); // Rimuovi localmente il prodotto
+		        } else {
+		            alert("Errore durante l'eliminazione del prodotto.");
+		            console.error("Errore DELETE:", response.status);
+		        }
+		    })
+		    .catch(error => {
+		        console.error('Errore nella cancellazione del prodotto:', error);
+		    });
+		    
+		    this.newProduct = { descrizione: '', categoria: '' };  // Reset dei campi
+		    
 		},
+		
 		// Mostra il modale
 		openModal() {
+			this.newProduct = Object.assign({}, { descrizione: '', categoria: '' });
 			this.showModal = true;  // Imposta il modale come visibile
 			this.submitLabel = 'Aggiungi';  // Cambia l'etichetta del pulsante
 		},
 
 		// Chiude il modale
 		closeModal() {
+			this.newProduct = Object.assign({}, { descrizione: '', categoria: '' });
 			this.showModal = false;  // Nasconde il modale
 		}
 		

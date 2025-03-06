@@ -29,6 +29,11 @@ public class ProdottiServicesImpl implements ProdottiServices {
 		return prodottiRepository.findAll();
 	}
 
+	@Override
+	public void deleteProdotti(int id) {
+		prodottiRepository.deleteById(id);
+	}
+
 		
 
 }
