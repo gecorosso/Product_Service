@@ -14,7 +14,7 @@ public class Prodotti {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-incremento
     @Column(name = "ID")
-    private Long id;
+    private Integer id;
 
     @Column(name = "DESCRIZIONE", nullable = false)
     @NotBlank

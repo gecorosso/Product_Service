@@ -20,7 +20,6 @@ public class ProdottiServicesImpl implements ProdottiServices {
 	
 	@Override
 	public Prodotti saveProdotti(Prodotti prodotti) {
-		System.out.println("--------->"+prodotti.getId());
 		return prodottiRepository.save(prodotti);
 	}
 	

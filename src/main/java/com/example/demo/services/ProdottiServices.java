@@ -9,8 +9,7 @@ import com.example.demo.entities.Prodotti;
 public interface ProdottiServices  {
 	  
 	public Prodotti findById(int id);
-	public Prodotti saveProdotti(Prodotti prodotti);
-	
+	public Prodotti saveProdotti(Prodotti prodotti);	
 	public Iterable<Prodotti> findAll();
 	public void deleteProdotti(int id);
 }	
