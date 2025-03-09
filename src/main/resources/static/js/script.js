@@ -9,11 +9,26 @@ const app = Vue.createApp({
 			},
 			showModal: false,  // Controlla la visibilità del modale
 			submitLabel: 'Aggiungi',  // Etichetta del pulsante di invio
-			prodottiVisibili: false  // Controlla la visibilità della lista prodotti
+			prodottiVisibili: false,  // Controlla la visibilità della lista prodotti
+			
+			// Paginazione
+			currentPage: 1, // Pagina attuale
+			itemsPerPage: 5 // Numero di elementi per pagina
 		};
 	},
+	computed: {
+		// Calcola il numero totale di pagine
+		totalPages() {
+			return Math.ceil(this.prodotti.length / this.itemsPerPage);
+		},
+		// Estrae solo i prodotti della pagina corrente
+		paginatedProdotti() {
+			const start = (this.currentPage - 1) * this.itemsPerPage;
+			const end = start + this.itemsPerPage;
+			return this.prodotti.slice(start, end);
+		}
+	},
 	methods: {
-		
 		toggleProdotti() {
             if (this.prodottiVisibili) {
                 // Se i prodotti sono già visibili, li nasconde
@@ -112,10 +127,25 @@ const app = Vue.createApp({
 		closeModal() {
 			this.newProduct = Object.assign({}, { descrizione: '', categoria: '' });
 			this.showModal = false;  // Nasconde il modale
+		},
+		
+		changePage(page) {
+			if (page >= 1 && page <= this.totalPages) {
+				this.currentPage = page;
+			}
+		},
+		
+		prevPage() {
+			if (this.currentPage > 1) {
+				this.currentPage--;
+			}
+		},
+		
+		nextPage() {
+			if (this.currentPage < this.totalPages) {
+				this.currentPage++;
+			}
 		}
-		
-		
-		
 		
 	}
 });
