@@ -24,8 +24,16 @@
 		</a>
 		<hr>
 		<!-- Tabella Prodotti -->
-		<h2>Elenco Prodotti</h2>
-		<button type="button" class="btn btn-primary" @click="toggleProdotti">Carica Prodotti</button>		
+		<h2>Elenco Prodotti</h2>				
+		<nav class="navbar bg-body-tertiary">
+		  <div class="container-fluid">
+			<button type="button" class="btn btn-primary" @click="toggleProdotti">Carica Prodotti</button>
+			<form class="d-flex" role="search" @submit.prevent="searhProduct">
+		      <input class="form-control me-2" v-model="searchText" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-success" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>
 			<table class="table table-striped mt-3" v-if="prodotti.length > 0" table-responsive>
 				<thead>
 					<tr>

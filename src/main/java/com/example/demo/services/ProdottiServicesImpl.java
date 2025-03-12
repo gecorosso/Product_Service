@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +35,11 @@ public class ProdottiServicesImpl implements ProdottiServices {
 	@Override
 	public boolean existsById(int id) {
 		return prodottiRepository.existsById(id);
+	}
+
+	@Override
+	public List<Prodotti> findByCategoria(String categoria) {
+		return prodottiRepository.findByCategoria(categoria);
 	}
 
 	

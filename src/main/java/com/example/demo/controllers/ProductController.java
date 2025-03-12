@@ -49,6 +49,14 @@ public class ProductController {
 		        }
 		 }
 		
+		@GetMapping(value = "/getProdottiByCategoria/{categoria}", produces = "application/json")	
+		@Operation(summary = "Recupera prodotti per categoria", description = "Restituisce un elenco di prodotti in base alla categoria.")
+		public ResponseEntity<Iterable<Prodotti>> getProdottiByCategoria(@PathVariable("categoria") String categoria) {
+			System.out.println("categoria: " +categoria);
+			Iterable<Prodotti> prodotti = prodottiServices.findByCategoria(categoria);
+			return new ResponseEntity<>(prodotti, HttpStatus.OK);
+		}
+		
 		@PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
 	    @Operation(summary = "Crea un nuovo prodotto", description = "Crea un nuovo prodotto.")
 		public ResponseEntity<Prodotti> createProdotto(@RequestBody Prodotti prodotto) {

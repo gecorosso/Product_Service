@@ -3,6 +3,7 @@ const app = Vue.createApp({
 		return {
 			//Variabili
 			prodotti: [],  // Array per contenere i prodotti
+			searchText: '', // Variabile per il testo della ricerca
 			newProduct: {  // Nuovo prodotto da aggiungere
 				descrizione: '',
 				categoria: ''
@@ -13,7 +14,8 @@ const app = Vue.createApp({
 			
 			// Paginazione
 			currentPage: 1, // Pagina attuale
-			itemsPerPage: 5 // Numero di elementi per pagina
+			itemsPerPage: 5, // Numero di elementi per pagina
+			data:[]
 		};
 	},
 	computed: {
@@ -30,6 +32,7 @@ const app = Vue.createApp({
 	},
 	methods: {
 		toggleProdotti() {
+			this.searchText = '';  // Resetta il campo di ricerca
             if (this.prodottiVisibili) {
                 // Se i prodotti sono già visibili, li nasconde
                 this.prodotti = [];
@@ -52,7 +55,58 @@ const app = Vue.createApp({
 					console.error('Errore nella richiesta:', error);
 				});
 		},
-
+		//cerca lista prodotti con categoria
+		// Ricerca prodotti per categoria
+		searhProduct() {
+			if (!this.searchText.trim()) {
+				alert("Inserisci una categoria valida per la ricerca!");
+				return;
+			}
+			const url = `prodotti/getProdottiByCategoria/${encodeURIComponent(this.searchText)}`;			
+			console.log(url);
+			
+			  fetch(url)
+				.then(response => {
+					if (!response.ok) {
+						alert("Errore nella risposta del server "+response.status);
+						throw new Error("Errore nella risposta del server");
+					}
+					return response.json();
+				})
+				.then(data => {
+					console.log("RISULTATO API:"+data);
+					if(!Array.isArray(data)){
+						console.error("Errore nella risposta del server,non + un array",data);
+						alert("Errore nella risposta del server formato non Valido");
+						retrn;
+					}
+					
+					// Assegna i dati e forza il rendering con Vue
+	           		 this.prodotti = data.length ? data : []; // Se vuoto, assegna un array vuoto
+					
+					if (this.prodotti.length === 0) {
+	                	alert("Nessun prodotto trovato per la categoria selezionata.");
+	            	}
+	
+		            // Forza Vue a riconoscere il cambiamento
+		            this.$nextTick(() => {
+		                console.log("Prodotti aggiornati:", this.prodotti.length);
+		            	this.prodotti = data.length ? data : []; // Se vuoto, assegna un array vuoto
+		            	
+		            });
+					
+					
+					this.prodottiVisibili = this.prodotti;	
+					console.log(this.prodottiVisibili.length);
+					this.prodottiVisibili = true;
+					this.searchText = '';  // Resetta il campo di ricerca
+					
+					})
+					.catch(error => {
+						console.error('Errore nella ricerca:', error);
+					});
+		},
+		
 		// Aggiunge un nuovo prodotto
 		submitProduct() {
 			// Chiamata POST per inviare il nuovo prodotto

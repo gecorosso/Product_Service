@@ -44,6 +44,7 @@ public class Product_ServiceTest {
         prodotto = Optional.of(new Prodotti(1, "Pantaloni Uomo", "Pantaloni"));
 
         // Mock
+        Mockito.when(prodottiRepository.findByCategoria("Pantaloni")).thenReturn(Arrays.asList(prodotto.get()));
         Mockito.when(prodottiRepository.findById(1)).thenReturn(prodotto);
         Mockito.when(prodottiRepository.save(prodotto.get())).thenReturn(prodotto.get());
         Mockito.when(prodottiRepository.findAll()).thenReturn(Arrays.asList(prodotto.get()));
@@ -78,4 +79,12 @@ public class Product_ServiceTest {
         prodottiServices.deleteProdotti(1);
         Mockito.verify(prodottiRepository, Mockito.times(1)).deleteById(1);
     }
+    
+    @Test
+	void testSearchProdotti() {
+		List<Prodotti> prod = prodottiServices.findByCategoria("Pantaloni");
+		assertEquals(1, prod.size());
+		assertEquals("Pantaloni", prod.get(0).getCategoria());
+		assertEquals("Pantaloni Uomo", prod.get(0).getDescrizione());
+	}
 }

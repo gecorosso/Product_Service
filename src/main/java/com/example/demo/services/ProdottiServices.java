@@ -1,5 +1,6 @@
  package com.example.demo.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -16,4 +17,5 @@ public interface ProdottiServices  {
 	public Iterable<Prodotti> findAll();
 	public void deleteProdotti(int id);
 	public boolean existsById(int id);
+	public List<Prodotti> findByCategoria(String categoria);
 }	
