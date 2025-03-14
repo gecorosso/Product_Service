@@ -49,14 +49,6 @@ public class ProductController {
 		        }
 		 }
 		
-		@GetMapping(value = "/getProdottiByCategoria/{categoria}", produces = "application/json")	
-		@Operation(summary = "Recupera prodotti per categoria", description = "Restituisce un elenco di prodotti in base alla categoria.")
-		public ResponseEntity<Iterable<Prodotti>> getProdottiByCategoria(@PathVariable("categoria") String categoria) {
-			System.out.println("categoria: " +categoria);
-			Iterable<Prodotti> prodotti = prodottiServices.findByCategoria(categoria);
-			return new ResponseEntity<>(prodotti, HttpStatus.OK);
-		}
-		
 		@PostMapping(value = "/create", consumes = "application/json", produces = "application/json")
 	    @Operation(summary = "Crea un nuovo prodotto", description = "Crea un nuovo prodotto.")
 		public ResponseEntity<Prodotti> createProdotto(@RequestBody Prodotti prodotto) {
@@ -77,6 +69,13 @@ public class ProductController {
 			
 			prodottiServices.deleteProdotti(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		
+		@GetMapping(value = "/search/{keyword}", produces = "application/json")
+		@Operation(summary = "Ricerca prodotti e descrizione", description = "Motore di ricerca alla categoria o alla descrizione.")
+		public ResponseEntity<Iterable<Prodotti>> search(@PathVariable("keyword") String keyword) {
+			Iterable<Prodotti> prodotti = prodottiServices.findByCategoriaOrDescrizioneIgnoreCase(keyword);
+			return new ResponseEntity<>(prodotti, HttpStatus.OK);
 		}
 	
 }

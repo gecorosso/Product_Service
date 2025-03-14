@@ -37,12 +37,11 @@ public class ProdottiServicesImpl implements ProdottiServices {
 		return prodottiRepository.existsById(id);
 	}
 
-	@Override
-	public List<Prodotti> findByCategoria(String categoria) {
-		return prodottiRepository.findByCategoria(categoria);
-	}
-
 	
+	@Override
+	public List<Prodotti> findByCategoriaOrDescrizioneIgnoreCase(String keyword) {		
+		return prodottiRepository.findByCategoriaOrDescrizioneIgnoreCase(keyword);
+	}	
 		
 
 }

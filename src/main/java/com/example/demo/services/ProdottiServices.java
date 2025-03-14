@@ -17,5 +17,5 @@ public interface ProdottiServices  {
 	public Iterable<Prodotti> findAll();
 	public void deleteProdotti(int id);
 	public boolean existsById(int id);
-	public List<Prodotti> findByCategoria(String categoria);
+	public List<Prodotti> findByCategoriaOrDescrizioneIgnoreCase(String keyword);
 }	
