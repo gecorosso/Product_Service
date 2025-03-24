@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public interface ProdottiRepository extends CrudRepository<Prodotti, Integer> {
 	public Optional<Prodotti> findById(int id);
+	
 	@Query("SELECT p FROM Prodotti p WHERE LOWER (p.categoria) LIKE %:keyword% OR "
 			+ "LOWER (p.descrizione) LIKE %:keyword%")
 	List<Prodotti> findByCategoriaOrDescrizioneIgnoreCase(@Param("keyword") String keyword);	
