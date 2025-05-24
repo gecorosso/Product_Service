@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  db:
+    image: mariadb:10.11
+    container_name: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: psdbase
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+
+  product_service:
+    build: .
+    container_name: product_service
+    ports:
+      - "8094:8094"
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/psdbase
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+networks:
+  mynetwork:
