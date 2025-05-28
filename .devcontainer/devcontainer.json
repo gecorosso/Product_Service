@@ -1,14 +1,14 @@
-// .devcontainer/devcontainer.json
 {
-  "name": "Spring Boot Dev",
-  "build": {
-    "dockerfile": "../Dockerfile"
-  },
-  "forwardPorts": [8094],
+  "name": "Java Spring Boot Dev",
+  "image": "mcr.microsoft.com/devcontainers/java:17",
   "postCreateCommand": "mvn clean install",
+  "forwardPorts": [8094],
   "customizations": {
     "vscode": {
-      "extensions": ["vscjava.vscode-spring-boot", "vscjava.vscode-maven"]
+      "extensions": [
+        "vscjava.vscode-spring-boot",
+        "vscjava.vscode-maven"
+      ]
     }
   }
 }
