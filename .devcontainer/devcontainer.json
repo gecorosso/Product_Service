@@ -1,13 +1,14 @@
 {
-  "name": "Java Spring Boot Dev",
+  "name": "Java Dev",
   "image": "mcr.microsoft.com/devcontainers/java:17",
   "postCreateCommand": "mvn clean install",
-  "forwardPorts": [8094],
+  "forwardPorts": [8080],
   "customizations": {
     "vscode": {
       "extensions": [
-        "vscjava.vscode-spring-boot",
-        "vscjava.vscode-maven"
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-boot"
       ]
     }
   }
