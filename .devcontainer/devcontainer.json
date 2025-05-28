@@ -1,8 +1,8 @@
 {
-  "name": "Java Dev",
+  "name": "Spring Boot Dev",
   "image": "mcr.microsoft.com/devcontainers/java:17",
   "postCreateCommand": "mvn clean install",
-  "forwardPorts": [8080],
+  "forwardPorts": [8094],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -13,3 +13,4 @@
     }
   }
 }
+
