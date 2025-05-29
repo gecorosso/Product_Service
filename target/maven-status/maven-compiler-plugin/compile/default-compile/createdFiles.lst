@@ -1,0 +1,6 @@
+com\example\demo\ProductServiceApplication.class
+com\example\demo\repository\ProdottiRepository.class
+com\example\demo\controllers\ProductController.class
+com\example\demo\entities\Prodotti.class
+com\example\demo\services\ProdottiServices.class
+com\example\demo\services\ProdottiServicesImpl.class
