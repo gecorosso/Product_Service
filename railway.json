@@ -4,9 +4,9 @@
     "builder": "DOCKERFILE"
   },
   "deploy": {
-    "startCommand": "java -jar app.jar",
+    "startCommand": "java -Xmx512m -Xms256m -jar app.jar",
     "healthcheckPath": "/actuator/health",
-    "healthcheckTimeout": 30,
+    "healthcheckTimeout": 60,
     "restartPolicyType": "ON_FAILURE"
   }
 }
