@@ -1,29 +1,35 @@
 version: '3.8'
+
 services:
-  db:
-    image: mariadb:10.11
-    container_name: mariadb
+  app:
+    build: .
+    ports:
+      - "8080:8080"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: psdbase
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/psdbase
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=root
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    depends_on:
+      - mariadb
+    networks:
+      - app-network
+
+  mariadb:
+    image: mariadb:10.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=psdbase
     ports:
       - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
     networks:
-      - mynetwork
+      - app-network
 
-  product_service:
-    build: .
-    container_name: product_service
-    ports:
-      - "8094:8094"
-    depends_on:
-      - db
-    networks:
-      - mynetwork
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://db:3306/psdbase
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+volumes:
+  mariadb_data:
 
 networks:
-  mynetwork:
+  app-network:
+    driver: bridge
