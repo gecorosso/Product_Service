@@ -22,7 +22,7 @@ services:
     build: .
     container_name: product_service
     ports:
-      - "8094:8094"
+      - "8080:8080"
     depends_on:
       - db
     networks:
