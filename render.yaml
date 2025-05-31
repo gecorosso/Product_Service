@@ -2,7 +2,7 @@ services:
   - type: web
     name: product-service
     env: docker
-    buildCommand: ./mvnw package -DskipTests
+    buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/*.jar
     envVars:
       - key: DATABASE_URL
@@ -11,6 +11,10 @@ services:
           property: connectionString
       - key: SPRING_PROFILES_ACTIVE
         value: prod
+    buildFilter:
+      paths:
+      - src/**
+      - pom.xml
 
 databases:
   - name: postgres
