@@ -8,28 +8,14 @@ import javax.sql.DataSource;
 
 @Configuration
 public class DatabaseConfig {
-    @Value("${PGHOST}")
-    private String host;
-    
-    @Value("${PGPORT}")
-    private String port;
-    
-    @Value("${PGDATABASE}")
-    private String database;
-    
-    @Value("${PGUSER}")
-    private String username;
-    
-    @Value("${PGPASSWORD}")
-    private String password;
+    @Value("${DATABASE_URL}")
+    private String databaseUrl;
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl(String.format("jdbc:postgresql://%s:%s/%s", host, port, database));
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
+        dataSource.setUrl("jdbc:" + databaseUrl);
         return dataSource;
     }
 }
