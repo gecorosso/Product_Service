@@ -17,14 +17,16 @@ services:
         fromDatabase:
           name: postgres
           property: host
+      - key: PGPORT
+        fromDatabase:
+          name: postgres
+          property: port
       - key: PGDATABASE
         fromDatabase:
           name: postgres
           property: database
-      - key: SPRING_JPA_DATABASE_PLATFORM
-        value: org.hibernate.dialect.PostgreSQLDialect
-      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
-        value: update
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
 
 databases:
   - name: postgres
