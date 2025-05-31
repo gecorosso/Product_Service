@@ -8,7 +8,7 @@ services:
       - key: PGUSER
         fromDatabase:
           name: postgres
-          property: user
+          property: username
       - key: PGPASSWORD
         fromDatabase:
           name: postgres
@@ -18,9 +18,7 @@ services:
           name: postgres
           property: host
       - key: PGPORT
-        fromDatabase:
-          name: postgres
-          property: port
+        value: "5432"
       - key: PGDATABASE
         fromDatabase:
           name: postgres
