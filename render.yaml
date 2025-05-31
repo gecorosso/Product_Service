@@ -5,15 +5,30 @@ services:
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/*.jar
     envVars:
-      - key: DATABASE_URL
+      - key: PGUSER
         fromDatabase:
           name: postgres
-          property: connectionString
-      - key: SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT
-        value: org.hibernate.dialect.PostgreSQLDialect
-      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
-        value: update
+          property: username
+      - key: PGPASSWORD
+        fromDatabase:
+          name: postgres
+          property: password
+      - key: PGHOST
+        fromDatabase:
+          name: postgres
+          property: host
+      - key: PGPORT
+        fromDatabase:
+          name: postgres
+          property: port
+      - key: PGDATABASE
+        fromDatabase:
+          name: postgres
+          property: database
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
 
 databases:
   - name: postgres
     ipAllowList: []
+    plan: free
