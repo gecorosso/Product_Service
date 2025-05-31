@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>http://localhost:8094/index.html</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	
+</head>
+
+<body>
+	<div id="applicazione" class="container">
+		<h1>Index.html</h1>
+		<img src="./images/bootstrap--v2.png" class="img-thumbnail" alt="bootstrap inside" style="width: 80px; height: 80px;">
+		<img src="./images/vue-logo.png" class="img-thumbnail" alt="vue.js inside" style="width: 80px; height: 80px;">
+		<img src="./images/spring.png" class="img-thumbnail" alt="SpringBoot inside" style="width: 200px; height: 80px;">		
+		<img src="./images/maria.png" class="img-thumbnail" alt="MariaDb inside" style="width: 80px; height: 80px;">
+		<img src="./images/junit.png" class="img-thumbnail" alt="Junit inside" style="width: 150px; height: 80px;">
+		<img src="./images/gitub.png" class="img-thumbnail" alt="git hub inside" style="width: 90px; height: 80px;">
+		<img src="./images/javaDoc.png" class="img-thumbnail" alt="JavaDoc inside" style="width: 90px; height: 80px;">
+		
+		<a href="http://localhost:8094/swagger-ui/index.html#/" target="_blank">
+			<img src="./images/swagger.png" class="img-thumbnail" alt="Swagger inside" style="width: 90px; height: 80px;">
+		</a>
+		<hr>
+		<!-- Tabella Prodotti -->
+		<h2>Elenco Prodotti</h2>				
+		<nav class="navbar bg-body-tertiary">
+		  <div class="container-fluid">
+			<button type="button" class="btn btn-primary" @click="toggleProdotti">Carica Prodotti</button>
+			<form class="d-flex" role="search" @submit.prevent="searchWithText">
+		      <input class="form-control me-2" v-model="searchText" type="search" placeholder="Search" aria-label="Search">
+		      <button class="btn btn-success" type="submit">Search</button>
+		    </form>
+		  </div>
+		</nav>
+			<table class="table table-striped mt-3" v-if="prodotti.length > 0" table-responsive>
+				<thead>
+					<tr>
+						<th>Descrizione</th>
+						<th>Categoria</th>
+						<th>Operazione</th>
+					</tr>
+				</thead>
+				<tbody >
+					<tr v-for="prodotto in paginatedProdotti" :key="prodotto.id">
+						<td>{{ prodotto.descrizione }}</td>
+						<td>{{ prodotto.categoria }}</td>
+						<td>
+							<button type="button" class="btn btn-success" @click="popolamentoForm(prodotto)">Modifica</button>&nbsp;
+							<button type="button" class="btn btn-danger" @click="deleteProdotto(prodotto)">Cancella</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<br/>
+							<nav aria-label="Page navigation example" v-if="totalPages > 1">
+								<ul class="pagination">
+									<li class="page-item" :class="{ 'disabled': currentPage === 1 }">
+										<a class="page-link" href="#" @click.prevent="prevPage">Previous</a>
+									</li>
+									<li class="page-item" v-for="page in totalPages" :key="page" :class="{ 'active': currentPage === page }">
+										<a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
+									</li>
+									<li class="page-item" :class="{ 'disabled': currentPage === totalPages }">
+										<a class="page-link" href="#" @click.prevent="nextPage">Next</a>
+									</li>
+								</ul>
+							</nav>
+						</td>
+					</tr>		 
+				</tbody> 
+			</table>
+		<br>
+		<br>	
+		<!-- Bottone per aprire il modale di inserimento -->
+		<button class="btn btn-primary" @click="openModal">Aggiungi Prodotto</button>
+
+		<!-- Modale per inserire nuovo prodotto -->
+		<div v-if="showModal" class="modal fade show d-block" tabindex="-1" id="addProductModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Inserisci un nuovo prodotto</h5>
+						<button type="button" class="btn-close" @click="closeModal"></button>
+					</div>
+					<div class="modal-body">
+						<form @submit.prevent="submitProduct">
+							<div class="mb-3">
+								<label for="descrizione" class="form-label">Descrizione</label>
+								<input type="text" id="descrizione" v-model="newProduct.descrizione" class="form-control" required>
+							</div>
+							<div class="mb-3">
+								<label for="categoria" class="form-label">Categoria</label>
+								<input type="text" id="categoria" v-model="newProduct.categoria" class="form-control" required>
+							</div>
+							
+							<button type="submit" class="btn btn-success">{{submitLabel}}</button>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+		
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="js/script.js"></script>
+
+</body>
+
+</html>
