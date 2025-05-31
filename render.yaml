@@ -5,10 +5,22 @@ services:
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/*.jar
     envVars:
-      - key: DATABASE_URL
+      - key: PGUSER
         fromDatabase:
           name: postgres
-          property: connectionString
+          property: user
+      - key: PGPASSWORD
+        fromDatabase:
+          name: postgres
+          property: password
+      - key: PGHOST
+        fromDatabase:
+          name: postgres
+          property: host
+      - key: PGDATABASE
+        fromDatabase:
+          name: postgres
+          property: database
       - key: SPRING_JPA_DATABASE_PLATFORM
         value: org.hibernate.dialect.PostgreSQLDialect
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
