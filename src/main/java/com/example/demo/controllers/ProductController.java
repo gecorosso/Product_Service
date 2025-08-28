@@ -22,6 +22,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("/prodotti")
+//Swagger/OpenAPI
 @Tag(name = "Prodotti Controller", description = "Gestione dei prodotti") // Titolo del controller
 public class ProductController {
 		

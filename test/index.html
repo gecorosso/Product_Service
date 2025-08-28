@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prova Generale</title>
+    <style>
+        body {
+            background-color: lightgreen;
+            color: black;
+        }
+        h1 {
+            text-align: center;
+            font-family: "Century Gothic", sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        #region-list {
+            list-style: none;
+            padding: 0;
+            display: inline-block;
+            text-align: left;
+        }
+        .region {
+            cursor: pointer;
+            margin: 10px 0;
+            font-weight: bold;
+            font-size: 36px;
+        }
+        .province-list {
+            display: none;
+            list-style: none;
+            padding-left: 20px;
+            font-weight: normal;
+        }
+        .province-list li {
+            font-size: 36px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Prova Generale</h1>
+    <div class="container">
+        <h2>Capoluoghi di Provincia Italiani</h2>
+        <ul id="region-list">
+            <li class="region">Abruzzo
+                <ul class="province-list">
+                    <li>Chieti</li>
+                    <li>L'Aquila</li>
+                    <li>Pescara</li>
+                    <li>Teramo</li>
+                </ul>
+            </li>
+            <li class="region">Basilicata
+                <ul class="province-list">
+                    <li>Matera</li>
+                    <li>Potenza</li>
+                </ul>
+            </li>
+            <li class="region">Calabria
+                <ul class="province-list">
+                    <li>Catanzaro</li>
+                    <li>Cosenza</li>
+                    <li>Crotone</li>
+                    <li>Reggio Calabria</li>
+                    <li>Vibo Valentia</li>
+                </ul>
+            </li>
+            <li class="region">Campania
+                <ul class="province-list">
+                    <li>Avellino</li>
+                    <li>Benevento</li>
+                    <li>Caserta</li>
+                    <li>Napoli</li>
+                    <li>Salerno</li>
+                </ul>
+            </li>
+            <li class="region">Emilia-Romagna
+                <ul class="province-list">
+                    <li>Bologna</li>
+                    <li>Ferrara</li>
+                    <li>Forlì-Cesena</li>
+                    <li>Modena</li>
+                    <li>Parma</li>
+                    <li>Piacenza</li>
+                    <li>Ravenna</li>
+                    <li>Reggio Emilia</li>
+                    <li>Rimini</li>
+                </ul>
+            </li>
+            <li class="region">Friuli-Venezia Giulia
+                <ul class="province-list">
+                    <li>Gorizia</li>
+                    <li>Pordenone</li>
+                    <li>Trieste</li>
+                    <li>Udine</li>
+                </ul>
+            </li>
+            <li class="region">Lazio
+                <ul class="province-list">
+                    <li>Frosinone</li>
+                    <li>Latina</li>
+                    <li>Rieti</li>
+                    <li>Roma</li>
+                    <li>Viterbo</li>
+                </ul>
+            </li>
+            <li class="region">Liguria
+                <ul class="province-list">
+                    <li>Genova</li>
+                    <li>Imperia</li>
+                    <li>La Spezia</li>
+                    <li>Savona</li>
+                </ul>
+            </li>
+            <li class="region">Lombardia
+                <ul class="province-list">
+                    <li>Bergamo</li>
+                    <li>Brescia</li>
+                    <li>Como</li>
+                    <li>Cremona</li>
+                    <li>Lecco</li>
+                    <li>Lodi</li>
+                    <li>Mantova</li>
+                    <li>Milano</li>
+                    <li>Monza e della Brianza</li>
+                    <li>Pavia</li>
+                    <li>Sondrio</li>
+                    <li>Varese</li>
+                </ul>
+            </li>
+            <li class="region">Marche
+                <ul class="province-list">
+                    <li>Ancona</li>
+                    <li>Ascoli Piceno</li>
+                    <li>Fermo</li>
+                    <li>Macerata</li>
+                    <li>Pesaro e Urbino</li>
+                </ul>
+            </li>
+            <li class="region">Molise
+                <ul class="province-list">
+                    <li>Campobasso</li>
+                    <li>Isernia</li>
+                </ul>
+            </li>
+            <li class="region">Piemonte
+                <ul class="province-list">
+                    <li>Alessandria</li>
+                    <li>Asti</li>
+                    <li>Biella</li>
+                    <li>Cuneo</li>
+                    <li>Novara</li>
+                    <li>Torino</li>
+                    <li>Verbano-Cusio-Ossola</li>
+                    <li>Vercelli</li>
+                </ul>
+            </li>
+            <li class="region">Puglia
+                <ul class="province-list">
+                    <li>Bari</li>
+                    <li>Barletta-Andria-Trani</li>
+                    <li>Brindisi</li>
+                    <li>Foggia</li>
+                    <li>Lecce</li>
+                    <li>Taranto</li>
+                </ul>
+            </li>
+            <li class="region">Sardegna
+                <ul class="province-list">
+                    <li>Cagliari</li>
+                    <li>Nuoro</li>
+                    <li>Oristano</li>
+                    <li>Sassari</li>
+                    <li>Sud Sardegna</li>
+                </ul>
+            </li>
+            <li class="region">Sicilia
+                <ul class="province-list">
+                    <li>Agrigento</li>
+                    <li>Caltanissetta</li>
+                    <li>Catania</li>
+                    <li>Enna</li>
+                    <li>Messina</li>
+                    <li>Palermo</li>
+                    <li>Ragusa</li>
+                    <li>Siracusa</li>
+                    <li>Trapani</li>
+                </ul>
+            </li>
+            <li class="region">Toscana
+                <ul class="province-list">
+                    <li>Arezzo</li>
+                    <li>Firenze</li>
+                    <li>Grosseto</li>
+                    <li>Livorno</li>
+                    <li>Lucca</li>
+                    <li>Massa-Carrara</li>
+                    <li>Pisa</li>
+                    <li>Pistoia</li>
+                    <li>Prato</li>
+                    <li>Siena</li>
+                </ul>
+            </li>
+            <li class="region">Trentino-Alto Adige
+                <ul class="province-list">
+                    <li>Bolzano</li>
+                    <li>Trento</li>
+                </ul>
+            </li>
+            <li class="region">Umbria
+                <ul class="province-list">
+                    <li>Perugia</li>
+                    <li>Terni</li>
+                </ul>
+            </li>
+            <li class="region">Valle d'Aosta
+                <ul class="province-list">
+                    <li>Aosta</li>
+                </ul>
+            </li>
+            <li class="region">Veneto
+                <ul class="province-list">
+                    <li>Belluno</li>
+                    <li>Padova</li>
+                    <li>Rovigo</li>
+                    <li>Treviso</li>
+                    <li>Venezia</li>
+                    <li>Verona</li>
+                    <li>Vicenza</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const regions = document.querySelectorAll('.region');
+
+            regions.forEach(region => {
+                region.addEventListener('click', function (event) {
+                    if (event.target.classList.contains('region')) {
+                        const provinceList = this.querySelector('.province-list');
+                        if (provinceList) {
+                            provinceList.style.display = provinceList.style.display === 'block' ? 'none' : 'block';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
