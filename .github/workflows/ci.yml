@@ -9,7 +9,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,5 +22,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build with Maven
+      # Build veloce senza test
+      - name: Build con Maven (senza test)
         run: mvn clean package -DskipTests
+       
+      
+      # Esecuzione di tutti i test Maven (unit + integration + quality)
+      - name: Run Maven Verify
+        run: mvn verify

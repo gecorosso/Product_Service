@@ -103,8 +103,12 @@
 		    <artifactId>maven-plugin-api</artifactId>
 		    <version>4.0.0-rc-3</version> <!-- resta fermo, la rc-4 non è stabile -->
 		</dependency>
-
-		
+		<dependency>
+		  <groupId>org.junit.jupiter</groupId>
+		  <artifactId>junit-jupiter</artifactId>
+		  <version>5.11.4</version>
+		  <scope>test</scope>
+		</dependency>		
 	</dependencies>
 
 	<build>
