@@ -6,6 +6,7 @@ on:
     branches: 
       - master
       - master_04
+      - tentativo-test-00
   pull_request:
 
 jobs:
