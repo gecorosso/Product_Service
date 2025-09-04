@@ -24,8 +24,7 @@ jobs:
 
       # Build veloce senza test
       - name: Build con Maven (senza test)
-        run: mvn clean package -DskipTests
-       
+        run: mvn clean package -DskipTests       
       
       # Esecuzione di tutti i test Maven (unit + integration + quality)
       #- name: Run Maven Verify
