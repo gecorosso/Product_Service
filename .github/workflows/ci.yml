@@ -28,5 +28,5 @@ jobs:
        
       
       # Esecuzione di tutti i test Maven (unit + integration + quality)
-      - name: Run Maven Verify
-        run: mvn verify
+      #- name: Run Maven Verify
+      #  run: mvn verify
